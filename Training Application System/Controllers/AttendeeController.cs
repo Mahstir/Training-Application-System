@@ -21,9 +21,46 @@ namespace Training_Application_System.Controllers
 
         public ActionResult New()
         {
-            return View();
+            return View("AttendeeForm");
         }
 
+        public ActionResult Index()
+        {
+            var attendees = _context.Attendees.ToList();
+
+            return View(attendees);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var attendee = _context.Attendees.FirstOrDefault(m => m.Id == id);
+
+            if (attendee == null)
+                return HttpNotFound();
+
+            return View("AttendeeForm", attendee);
+         
+        }
+
+        [HttpPost]
+        public ActionResult Save(Attendee attendee)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("AttendeeForm", attendee);
+            }
+            if (attendee.Id == 0)
+            _context.Attendees.Add(attendee);
+            else
+            {
+                var attendeeInDB = _context.Attendees.Single(a => a.Id == attendee.Id);
+                TryUpdateModel(attendeeInDB);
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Attendee");
+        }
     }
 }
        

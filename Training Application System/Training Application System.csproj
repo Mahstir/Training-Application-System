@@ -55,12 +55,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -167,10 +176,16 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\AttendeesController.cs" />
+    <Compile Include="Controllers\API\TrainingsController.cs" />
+    <Compile Include="Controllers\ApplicationsController.cs" />
+    <Compile Include="Controllers\ApplicationsFormController.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TrainingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,8 +197,41 @@
     <Compile Include="Migrations\202110202005491_AddTrainingModel.Designer.cs">
       <DependentUpon>202110202005491_AddTrainingModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110211011468_AddEmailAddressToAttendeeModel.cs" />
+    <Compile Include="Migrations\202110211011468_AddEmailAddressToAttendeeModel.Designer.cs">
+      <DependentUpon>202110211011468_AddEmailAddressToAttendeeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110211316530_MakePropertiesRequiredInAttendeeModel.cs" />
+    <Compile Include="Migrations\202110211316530_MakePropertiesRequiredInAttendeeModel.Designer.cs">
+      <DependentUpon>202110211316530_MakePropertiesRequiredInAttendeeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110211545366_AddAnnotationToAttendeeAndAddPhoneNumberAndEmailProperty.cs" />
+    <Compile Include="Migrations\202110211545366_AddAnnotationToAttendeeAndAddPhoneNumberAndEmailProperty.Designer.cs">
+      <DependentUpon>202110211545366_AddAnnotationToAttendeeAndAddPhoneNumberAndEmailProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110212218283_AddAnnotationToTrainingModel.cs" />
+    <Compile Include="Migrations\202110212218283_AddAnnotationToTrainingModel.Designer.cs">
+      <DependentUpon>202110212218283_AddAnnotationToTrainingModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110212302389_AddApplicationModel.cs" />
+    <Compile Include="Migrations\202110212302389_AddApplicationModel.Designer.cs">
+      <DependentUpon>202110212302389_AddApplicationModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110221135446_AddListofTrainingToDomainModel.cs" />
+    <Compile Include="Migrations\202110221135446_AddListofTrainingToDomainModel.Designer.cs">
+      <DependentUpon>202110221135446_AddListofTrainingToDomainModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110221143212_UpdateApplicationModelWithAttendeeIDAndTrainingList.cs" />
+    <Compile Include="Migrations\202110221143212_UpdateApplicationModelWithAttendeeIDAndTrainingList.Designer.cs">
+      <DependentUpon>202110221143212_UpdateApplicationModelWithAttendeeIDAndTrainingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110221151144_AddCapacityToTrainingModel.cs" />
+    <Compile Include="Migrations\202110221151144_AddCapacityToTrainingModel.Designer.cs">
+      <DependentUpon>202110221151144_AddCapacityToTrainingModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Attendee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -197,10 +245,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -214,6 +265,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -248,10 +303,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Attendee\AttendeeForm.cshtml" />
+    <Content Include="Views\Attendee\Index.cshtml" />
+    <Content Include="Views\Training\Index.cshtml" />
+    <Content Include="Views\Training\TrainingForm.cshtml" />
+    <Content Include="Views\ApplicationsForm\ApplicationForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Training\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -272,6 +331,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110202005491_AddTrainingModel.resx">
       <DependentUpon>202110202005491_AddTrainingModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110211011468_AddEmailAddressToAttendeeModel.resx">
+      <DependentUpon>202110211011468_AddEmailAddressToAttendeeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110211316530_MakePropertiesRequiredInAttendeeModel.resx">
+      <DependentUpon>202110211316530_MakePropertiesRequiredInAttendeeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110211545366_AddAnnotationToAttendeeAndAddPhoneNumberAndEmailProperty.resx">
+      <DependentUpon>202110211545366_AddAnnotationToAttendeeAndAddPhoneNumberAndEmailProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110212218283_AddAnnotationToTrainingModel.resx">
+      <DependentUpon>202110212218283_AddAnnotationToTrainingModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110212302389_AddApplicationModel.resx">
+      <DependentUpon>202110212302389_AddApplicationModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110221135446_AddListofTrainingToDomainModel.resx">
+      <DependentUpon>202110221135446_AddListofTrainingToDomainModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110221143212_UpdateApplicationModelWithAttendeeIDAndTrainingList.resx">
+      <DependentUpon>202110221143212_UpdateApplicationModelWithAttendeeIDAndTrainingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110221151144_AddCapacityToTrainingModel.resx">
+      <DependentUpon>202110221151144_AddCapacityToTrainingModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

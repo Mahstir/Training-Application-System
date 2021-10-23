@@ -22,6 +22,8 @@ namespace Training_Application_System.Models
     {
         public DbSet<Attendee> Attendees { get; set; }
         public DbSet<Training> Trainings { get; set; }
+
+        public DbSet<Application> Applications { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
