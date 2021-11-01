@@ -229,16 +229,49 @@
     <Compile Include="Migrations\202110221151144_AddCapacityToTrainingModel.Designer.cs">
       <DependentUpon>202110221151144_AddCapacityToTrainingModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110262129421_addNavigationPropertyToAttendee.cs" />
+    <Compile Include="Migrations\202110262129421_addNavigationPropertyToAttendee.Designer.cs">
+      <DependentUpon>202110262129421_addNavigationPropertyToAttendee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110270915304_SeedUsers.cs" />
+    <Compile Include="Migrations\202110270915304_SeedUsers.Designer.cs">
+      <DependentUpon>202110270915304_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110272214035_AddDescriptionFieldToTraining.cs" />
+    <Compile Include="Migrations\202110272214035_AddDescriptionFieldToTraining.Designer.cs">
+      <DependentUpon>202110272214035_AddDescriptionFieldToTraining.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110290120544_AddNameToApplicationUser.cs" />
+    <Compile Include="Migrations\202110290120544_AddNameToApplicationUser.Designer.cs">
+      <DependentUpon>202110290120544_AddNameToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110290235143_AddApplicationUserToAttendee.cs" />
+    <Compile Include="Migrations\202110290235143_AddApplicationUserToAttendee.Designer.cs">
+      <DependentUpon>202110290235143_AddApplicationUserToAttendee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110311451456_AddFormatToDateFieldInTraining.cs" />
+    <Compile Include="Migrations\202110311451456_AddFormatToDateFieldInTraining.Designer.cs">
+      <DependentUpon>202110311451456_AddFormatToDateFieldInTraining.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110311455169_AddTimeFieldToTraining.cs" />
+    <Compile Include="Migrations\202110311455169_AddTimeFieldToTraining.Designer.cs">
+      <DependentUpon>202110311455169_AddTimeFieldToTraining.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110312252553_AddValidationtoDateOfTraining.cs" />
+    <Compile Include="Migrations\202110312252553_AddValidationtoDateOfTraining.Designer.cs">
+      <DependentUpon>202110312252553_AddValidationtoDateOfTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Attendee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Min24HrsBeforeTraining.cs" />
     <Compile Include="Models\Training.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\RandomTrainingViewModel.cs" />
+    <Compile Include="Models\ViewModels\RandomTrainingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -307,7 +340,10 @@
     <Content Include="Views\Attendee\Index.cshtml" />
     <Content Include="Views\Training\Index.cshtml" />
     <Content Include="Views\Training\TrainingForm.cshtml" />
-    <Content Include="Views\ApplicationsForm\ApplicationForm.cshtml" />
+    <Content Include="Views\ApplicationsForm\New.cshtml" />
+    <Content Include="Views\Training\ReadOnly.cshtml" />
+    <Content Include="Views\Training\Details.cshtml" />
+    <Content Include="Views\Training\AttendeeForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -355,6 +391,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110221151144_AddCapacityToTrainingModel.resx">
       <DependentUpon>202110221151144_AddCapacityToTrainingModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110262129421_addNavigationPropertyToAttendee.resx">
+      <DependentUpon>202110262129421_addNavigationPropertyToAttendee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110270915304_SeedUsers.resx">
+      <DependentUpon>202110270915304_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110272214035_AddDescriptionFieldToTraining.resx">
+      <DependentUpon>202110272214035_AddDescriptionFieldToTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110290120544_AddNameToApplicationUser.resx">
+      <DependentUpon>202110290120544_AddNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110290235143_AddApplicationUserToAttendee.resx">
+      <DependentUpon>202110290235143_AddApplicationUserToAttendee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110311451456_AddFormatToDateFieldInTraining.resx">
+      <DependentUpon>202110311451456_AddFormatToDateFieldInTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110311455169_AddTimeFieldToTraining.resx">
+      <DependentUpon>202110311455169_AddTimeFieldToTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110312252553_AddValidationtoDateOfTraining.resx">
+      <DependentUpon>202110312252553_AddValidationtoDateOfTraining.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

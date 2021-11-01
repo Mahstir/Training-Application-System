@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Training_Application_System.Models;
+using Training_Application_System.ViewModels;
 
 namespace Training_Application_System.Controllers
 {
+    [Authorize]
     public class AttendeeController : Controller
     {
         private ApplicationDbContext _context;
@@ -19,9 +21,23 @@ namespace Training_Application_System.Controllers
             _context = new ApplicationDbContext();
         }
 
-        public ActionResult New()
+        public ActionResult AttendeeForm(int? id)
         {
-            return View("AttendeeForm");
+
+            var trainings = _context.Trainings.SingleOrDefault(c => c.Id == id).Id;
+            
+
+            var viewModel = new RandomTrainingViewModel
+            {
+
+                TrainingId = trainings,
+             
+
+
+
+            };
+            return View(viewModel);
+           
         }
 
         public ActionResult Index()
@@ -43,14 +59,27 @@ namespace Training_Application_System.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Save(Attendee attendee)
         {
             if (!ModelState.IsValid)
             {
                 return View("AttendeeForm", attendee);
             }
+
+            var training = _context.Trainings.Single(m => m.Id == attendee.TrainingId);
+
+            if (training.Capacity == 0)
+                throw new Exception("You can no longer register for this training as the capacity has been met.");
+
             if (attendee.Id == 0)
-            _context.Attendees.Add(attendee);
+            {
+                _context.Attendees.Add(attendee);
+
+                training.Capacity--;
+
+
+            }
             else
             {
                 var attendeeInDB = _context.Attendees.Single(a => a.Id == attendee.Id);
@@ -59,7 +88,9 @@ namespace Training_Application_System.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Attendee");
+            TempData["SuccessMessage"] = "You have successfully registered for this training";
+
+            return RedirectToAction("Index", "Training");
         }
     }
 }

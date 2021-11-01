@@ -1,0 +1,104 @@
+﻿@model Training_Application_System.Models.Participant
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ApplicationForm</h2>
+
+@using (Html.BeginForm("Save", "ApplicationsForm"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.Email)
+        @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control", @value = Html.DisplayNameFor(m => m.User.Email) })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.TrainingId)
+        @Html.DropDownListFor(m => m.User.TrainingId, new SelectList(Model.Trainings, "Id", "Name"), "Select Training", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Trainings)
+    </div>
+
+    @Html.HiddenFor(m => m.User.Id)
+    @Html.HiddenFor(m => m.User.FirstName)
+    @Html.HiddenFor(m => m.User.LastName)
+
+
+
+    <button type="submit" class="btn btn-primary">Register</button>
+}
+@*<form>
+        <div class="form-group">
+            <label>Attendee Email</label>
+            <input id="attendee" name="attendee" type="text" value="" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Training</label>
+            <input id="training" name="training" type="text" value="" class="form-control" />
+        </div>
+        <ul id="trainings" class="list-group"></ul>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+
+    @section scripts
+        {
+        <script>
+            $(document).ready(function () {
+
+                var vm = {
+                    trainingIds: []
+                };
+
+                var attendees = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('emailaddress'),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    remote: {
+                        url: '/api/attendees?query=%QUERY',
+                        wildcard: '%QUERY'
+                    }
+                });
+
+                $('#attendee').typeahead({
+                    minLength: 1,
+                    highlight: true
+                }, {
+                    name: 'emailaddress',
+                    display: 'firstname',
+                    source: attendees
+                }).on("typeahead:select", function (e, attendee) {
+
+                });
+            });
+
+            var trainings = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/trainings?query=%QUERY',
+                    wildcard: '%QUERY',
+                    limit: 10
+
+                }
+            });
+
+            $('#training').typeahead({
+                minLength: 1,
+                highlight: true,
+                limit: 1
+            }, {
+                /*name: 'trainings',*/
+                display: 'capacity',
+                source: trainings.ttAdapter()
+            }).on("typeahead:select", function (e, training) {
+                $("#trainings").append("<li>" + training.name + "</li>");
+
+                $("#training").typeahead("val", "");
+
+                vm.trainingIds.push(training.id);
+            });
+
+        </script>
+    }*@
+

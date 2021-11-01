@@ -30,6 +30,9 @@ else
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Training.Name)
+            </th>
             <th></th>
         </tr>
 
@@ -47,6 +50,9 @@ else
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrainingId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

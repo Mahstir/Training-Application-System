@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Training_Application_System.Models;
+using Training_Application_System.ViewModels;
 
 namespace Training_Application_System.Controllers
 {
@@ -17,10 +18,41 @@ namespace Training_Application_System.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
+        public ActionResult AttendeeForm(int? id)
+        {
+
+            var trainingId = _context.Trainings.SingleOrDefault(c => c.Id == id).Id;
+            var trainingName = _context.Trainings.SingleOrDefault(c => c.Id == id).Name;
+
+
+
+            var viewModel = new RandomTrainingViewModel
+            {
+
+                TrainingId = trainingId,
+               
+                
+
+
+
+            };
+
+            ViewBag.Id = trainingId;
+            ViewBag.Test = trainingName;
+            return View(viewModel);
+
+        }
+
         public ActionResult Index()
         {
             var trainings = _context.Trainings.ToList();
-            return View(trainings);
+
+            if (User.IsInRole("CanCreateTrainings"))
+                return View(trainings);
+
+            return View("ReadOnly", trainings);
+            //return View(trainings);
         }
 
         public ActionResult New()
@@ -38,6 +70,8 @@ namespace Training_Application_System.Controllers
             return View("TrainingForm", training);
         }
 
+
+
         [HttpPost]
         public ActionResult Save(Training training)
         {
@@ -45,6 +79,7 @@ namespace Training_Application_System.Controllers
             //{
             //    return View("TrainingForm", training);
             //}
+           
 
             if (training.Id == 0)
                 _context.Trainings.Add(training);
@@ -52,11 +87,38 @@ namespace Training_Application_System.Controllers
             {
                 var trainingInDb = _context.Trainings.Single(m => m.Id == training.Id);
                 TryUpdateModel(trainingInDb);
+                trainingInDb.Id = ViewBag.Id;
             }
 
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Training");
+
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var training = _context.Trainings.SingleOrDefault(m => m.Id == id);
+
+            if (training == null)
+                throw new Exception("Record not found");
+
+            _context.Trainings.Remove(training);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Training");
+
+        
+        }
+
+        public ActionResult Details(int id)
+        {
+            var training = _context.Trainings.SingleOrDefault(m => m.Id == id);
+
+            if (training == null)
+                throw new Exception("Record not found");
+
+            return View(training);
 
         }
 

@@ -83,4 +83,14 @@ namespace Training_Application_System.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+
+    public class Participant
+    {
+        [Required]
+        public ApplicationUser User { get; set; }
+
+        [Required]
+        public IEnumerable<Training> Trainings { get; set; }
+    }
 }

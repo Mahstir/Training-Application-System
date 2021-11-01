@@ -1,0 +1,46 @@
+﻿@model Training_Application_System.ViewModels.RandomTrainingViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+@*<h2>New Attendee</h2>*@
+<hr />
+<p class="alert alert-warning">You are about to register for a new @ViewBag.Test Training <br /> Please fill out the details below</p>
+<hr />
+@using (Html.BeginForm("Save", "Attendee"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Attendee.FirstName)
+        @Html.TextBoxFor(m => m.Attendee.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Attendee.FirstName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Attendee.LastName)
+        @Html.TextBoxFor(m => m.Attendee.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Attendee.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Attendee.EmailAddress)
+        @Html.TextBoxFor(m => m.Attendee.EmailAddress, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Attendee.EmailAddress)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Attendee.PhoneNumber)
+        @Html.TextBoxFor(m => m.Attendee.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Attendee.PhoneNumber)
+    </div>
+  
+    <input data-val="true" data-val-number="The field TrainingId must be a number." id="Attendee_TrainingId" name="Attendee.TrainingId" type="hidden" value=@ViewContext.RouteData.Values["id"]>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

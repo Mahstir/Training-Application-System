@@ -1,4 +1,4 @@
-﻿@model Training_Application_System.Models.Attendee
+﻿<!--@model Training_Application_System.ViewModels.RandomTrainingViewModel
 
 @{
     ViewBag.Title = "New";
@@ -10,33 +10,43 @@
 @using (Html.BeginForm("Save", "Attendee"))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.FirstName)
-        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.FirstName)
+        @Html.LabelFor(m => m.User.FirstName)
+        @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.FirstName)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.LastName)
-        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.LastName)
+        @Html.LabelFor(m => m.User.LastName)
+        @Html.EditorFor(m => m.User.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.LastName)-->
+    @*</div>*@
+    <!--<div class="form-group">
+        @Html.LabelFor(m => m.User.Email)
+        @Html.EditorFor(m => m.User.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.Email)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.EmailAddress)
-        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.EmailAddress)
+        @Html.LabelFor(m => m.User.PhoneNumber)
+        @Html.EditorFor(m => m.User.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.PhoneNumber)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.PhoneNumber)
-        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.PhoneNumber)
-    </div>
+        @Html.LabelFor(m => m.TrainingId)
+        @Html.EditorFor(m => m.TrainingId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TrainingId)
+    </div>-->
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.User.TrainingId)
+            @Html.DropDownListFor(m => m.User.TrainingId, new SelectList(Model.Trainings, "Id", "Name"), "Select Training", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Trainings)
+        </div>*@
 
-    @Html.HiddenFor(m => m.Id)
-    <button type="submit" class="btn btn-primary">Save</button>
+    @*@Html.HiddenFor(m => m.Id)*@
+    <!--<button type="submit" class="btn btn-primary">Save</button>
 }
 
 @section scripts
     {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}-->
 

@@ -27,5 +27,12 @@ namespace Training_Application_System.Models
         [Phone]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+        public int? TrainingId { get; set; }
+
+        public Training Training { get; set; }
+
+        public int? ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }
