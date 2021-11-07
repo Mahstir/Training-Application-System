@@ -17,10 +17,10 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Time)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Time)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Capacity)
@@ -32,28 +32,29 @@
     {
         if (item.Date >= DateTime.Today.AddDays(-7))
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Time)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date,  new { @class = "form-control" })
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Capacity)
-                </td>
-                <td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date, new { @class = "form-control" })
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Time)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Capacity)
+    </td>
+    <td>
 
 
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+        @Html.ActionLink("Details", "Details", new { id = item.Id })
 
 
 
-                </td>
-            </tr>
+    </td>
+</tr>
         }
 
     }

@@ -40,7 +40,7 @@ namespace Training_Application_System.Controllers
            
         }
 
-        public ActionResult Index()
+        public ActionResult Index(Attendee attendee)
         {
             var attendees = _context.Attendees.ToList();
 
@@ -70,7 +70,9 @@ namespace Training_Application_System.Controllers
             var training = _context.Trainings.Single(m => m.Id == attendee.TrainingId);
 
             if (training.Capacity == 0)
-                throw new Exception("You can no longer register for this training as the capacity has been met.");
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
             if (attendee.Id == 0)
             {

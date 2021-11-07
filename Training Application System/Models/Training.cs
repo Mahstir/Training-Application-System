@@ -6,6 +6,7 @@ using System.Web;
 
 namespace Training_Application_System.Models
 {
+    //
     public class Training
     {
 
@@ -30,6 +31,7 @@ namespace Training_Application_System.Models
 
 
         [Required]
+        [Min24HrsBeforeTraining]
         public int Capacity { get; set; }
 
         public string Details { get; set; }

@@ -12,10 +12,10 @@ namespace Training_Application_System.Models
         {
             var training = (Training)validationContext.ObjectInstance;
 
-            if (training.Date >= DateTime.Today)
+            if (training.Capacity > 0)
                 return ValidationResult.Success;
 
-            return new ValidationResult("You can no longer register for this training");
+            return new ValidationResult("A training cannot have a capacity of zero");
         }
     }
 }

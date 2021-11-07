@@ -87,7 +87,7 @@ namespace Training_Application_System.Controllers
             {
                 var trainingInDb = _context.Trainings.Single(m => m.Id == training.Id);
                 TryUpdateModel(trainingInDb);
-                trainingInDb.Id = ViewBag.Id;
+               
             }
 
             _context.SaveChanges();
@@ -101,7 +101,10 @@ namespace Training_Application_System.Controllers
             var training = _context.Trainings.SingleOrDefault(m => m.Id == id);
 
             if (training == null)
-                throw new Exception("Record not found");
+            {
+
+            }
+              
 
             _context.Trainings.Remove(training);
             _context.SaveChanges();
@@ -115,8 +118,8 @@ namespace Training_Application_System.Controllers
         {
             var training = _context.Trainings.SingleOrDefault(m => m.Id == id);
 
-            if (training == null)
-                throw new Exception("Record not found");
+            //if (training == null)
+            //    throw new Exception("Record not found");
 
             return View(training);
 
