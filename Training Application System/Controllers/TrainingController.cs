@@ -74,12 +74,7 @@ namespace Training_Application_System.Controllers
 
         [HttpPost]
         public ActionResult Save(Training training)
-        {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View("TrainingForm", training);
-            //}
-           
+        {  
 
             if (training.Id == 0)
                 _context.Trainings.Add(training);
