@@ -185,8 +185,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\API\AttendeesController.cs" />
-    <Compile Include="Controllers\API\TrainingsController.cs" />
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\ApplicationsFormController.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />

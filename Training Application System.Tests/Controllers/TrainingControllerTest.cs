@@ -23,8 +23,10 @@ namespace Training_Application_System.Tests.Controllers
         public void TestListView()
         {
             var controller = new TrainingController();
-            var result = controller.Edit(1) as ActionResult;
+            var result = controller.Edit(0) as ActionResult;
             Assert.IsNotNull(result);
         }
+
+      
     }
 }
