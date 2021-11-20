@@ -16,12 +16,23 @@ namespace Training_Application_System.Tests.Controllers
             Assert.IsNotNull(result);
         }
 
-        //[TestMethod]
-        //public void TestListView()
-        //{
-        //    var controller = new TrainingController();
-        //    var result = controller.Edit(1) as ActionResult;
-        //    Assert.IsNotNull(result);
-        //}
+        [TestMethod]
+        public void TestTempData()
+        {
+            var controller = new AttendeeController();
+
+            var testCheck = controller.TempData.ContainsValue("SuccessMessage");
+            Assert.IsTrue(testCheck);
+        }
+
+        [TestMethod]
+        public void TestListView()
+        {
+            var controller = new AttendeeController();
+
+            var modelCheck = controller.ModelState.IsValid;
+
+            Assert.IsFalse(modelCheck);
+        }
     }
 }

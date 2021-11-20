@@ -32,13 +32,7 @@ namespace Training_Application_System.Controllers
 
             var viewModel = new RandomTrainingViewModel
             {
-
                 TrainingId = trainingId,
-               
-                
-
-
-
             };
 
             ViewBag.Id = trainingId;
